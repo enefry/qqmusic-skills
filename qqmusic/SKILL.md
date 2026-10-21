@@ -1,6 +1,6 @@
 ---
 name: qqmusic
-description: Search QQ Music songs, albums, playlists, MVs, radios and artists; fetch recommendations, charts, playlist details and listening reports; explicitly requested AI listening insights. QQ音乐查询与听歌报告，使用内置 Python CLI 调用接口。
+description: Search QQ Music songs, albums, playlists, MVs, radios and artists; fetch recommendations, charts, playlist details and listening reports; explicitly requested AI listening insights; download songs with the user's web session and optionally convert FLAC to ALAC. QQ音乐查询、听歌报告及网页登录态单曲下载。
 metadata:
   version: "0.0.3"
 ---
@@ -8,6 +8,8 @@ metadata:
 # QQ音乐助手
 
 使用本 skill 的 `scripts/qqmusic.py` 调用 Agent Gateway。需要 Python 3.9+，仅使用标准库，无需安装依赖。下方命令以 skill 根目录为当前目录；从其他目录调用时使用脚本的绝对路径。
+
+单曲下载使用 `scripts/qqmusic_web.py` 和 `.env` 中的 `QQ_MUSIC_COOKIE`；FLAC 校验需安装 PyAV，ALAC 转码使用 macOS 自带 `afconvert`。详见 [web.md](web.md)。
 
 ## 直接运行
 
@@ -101,6 +103,7 @@ python3 scripts/qqmusic.py report --period month > report.json
 | 今天/本周/本月听歌报告 | `report --period day/week/month`，默认 month | [me.md](me.md) |
 | 分析我的听歌风格等明确解读请求 | `interpret QUERY` | [assistant.md](assistant.md) |
 | 检查版本 | `check-version` | [version.md](version.md) |
+| 歌曲详情、媒体链接、单曲下载或 FLAC 转 ALAC | `qqmusic_web.py song-detail/song-url/download MID` | [web.md](web.md) |
 
 报告的 `--start-time` 为 Unix **秒**：日报传目标日期零点，周报传目标周周一零点，按用户目标时区计算；月报由服务端忽略。AI 解读的 `--asset-types` 支持 `1`（收藏歌曲）、`2`（听歌记录），不传时默认全选。
 

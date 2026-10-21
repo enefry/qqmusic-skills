@@ -2,6 +2,8 @@
 
 支持音乐搜索、每日推荐、猜你喜欢、排行榜、AI 歌单、听歌解读等功能。
 
+支持通过 `qqmusic/scripts/qqmusic_web.py` 使用网页登录态下载单曲，并将 FLAC 无损转成 M4A / ALAC，见 [下载说明](qqmusic/web.md)。
+
 ## 配置
 
 ### 获取 API Key
