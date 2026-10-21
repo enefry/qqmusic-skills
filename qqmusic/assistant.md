@@ -20,13 +20,10 @@
 **调用示例：**
 
 ```bash
-curl -N -X POST "${BaseUrl}/assistant/ai_interpretation" \
-  -H "Authorization: Bearer $QQMUSIC_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"params": {"query": "分析我的听歌风格"}, "comm": {"skill_version": "0.0.3"}}'
+python3 scripts/qqmusic.py interpret "分析我的听歌风格" --asset-types 1 2
 ```
 
-> 必须加 `curl -N` 关闭输出缓冲，否则看不到流式效果。
+脚本每行到达后立即刷新标准输出，实时透传 SSE 原文，不依赖未公开的事件 JSON 结构。Key 配置见 [SKILL.md](SKILL.md)。
 
 ## 响应：SSE 流式
 

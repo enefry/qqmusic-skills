@@ -1,5 +1,16 @@
 # discover — 搜索、推荐与 AI 歌单
 
+## Python 命令
+
+```bash
+python3 scripts/qqmusic.py search "周杰伦" --type song --page 0
+python3 scripts/qqmusic.py daily-mix
+python3 scripts/qqmusic.py radio
+python3 scripts/qqmusic.py ai-playlists
+```
+
+`--type` 支持 `song/album/playlist/mv/radio/singer` 或 `0–5`；`ai-playlists` 自动传 `reqType=all`。Key 配置见 [SKILL.md](SKILL.md)。
+
 ## 搜索
 
 ### 统一搜索

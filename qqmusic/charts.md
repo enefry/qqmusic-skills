@@ -1,5 +1,14 @@
 # charts — 排行榜
 
+## Python 命令
+
+```bash
+python3 scripts/qqmusic.py charts
+python3 scripts/qqmusic.py chart-detail 26 --page 0
+```
+
+榜单 ID 取自 `charts` 的 `topId`；每次请求一页，按 `hasMore` 翻页。Key 配置见 [SKILL.md](SKILL.md)。
+
 查看 QQ 音乐各类排行榜，按分组展示。
 
 ## 接口

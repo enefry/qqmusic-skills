@@ -1,5 +1,13 @@
 # playlists — 歌单详情
 
+## Python 命令
+
+```bash
+python3 scripts/qqmusic.py playlist-detail 123456789 --page 0
+```
+
+将示例 ID 替换为实际 `dissId`；按 `hasMore` 翻页。Key 配置见 [SKILL.md](SKILL.md)。
+
 查看某个歌单的完整信息及全部歌曲。
 
 ## 接口

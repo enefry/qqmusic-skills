@@ -1,5 +1,15 @@
 # me — 听歌报告
 
+## Python 命令
+
+```bash
+python3 scripts/qqmusic.py report --period day
+python3 scripts/qqmusic.py report --period week
+python3 scripts/qqmusic.py report --period month
+```
+
+`--period` 也接受 `d/w/m`，默认月报；`--start-time` 传 Unix 秒，语义见下文。输出完整 JSON，由调用者按本文解释字段。Key 配置见 [SKILL.md](SKILL.md)。
+
 ## 听歌报告
 
 获取用户的听歌报告，按日 / 周 / 月聚合统计听歌时长、Top 歌手、Top 歌曲、活跃时段、流派偏好、小众/尝鲜歌曲、连续听歌天数、听歌城市等数据。

@@ -18,11 +18,10 @@ POST ${BaseUrl}/skill/version
 **请求示例：**
 
 ```bash
-curl -X POST "${BaseUrl}/skill/version" \
-  -H "Authorization: Bearer $QQMUSIC_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"params": {}, "comm": {"skill_version": "0.0.1"}}'
+python3 scripts/qqmusic.py check-version
 ```
+
+脚本自动携带当前协议版本，返回原始 JSON，不自动执行下载或升级。`python3 scripts/qqmusic.py --version` 仅查看本地版本。Key 配置见 [SKILL.md](SKILL.md)。
 
 **PATH：** `/skill/version`
 
@@ -30,7 +29,7 @@ curl -X POST "${BaseUrl}/skill/version" \
 
 | 参数                 | 类型   | 必填 | 说明                                               |
 | -------------------- | ------ | ---- | -------------------------------------------------- |
-| `comm.skill_version` | string | 是   | 当前 skill 版本号，取 SKILL.md 顶部 `version` 字段 |
+| `comm.skill_version` | string | 是   | 当前 skill 协议版本，脚本 `SKILL_VERSION` 与 SKILL.md 的 `metadata.version` 保持一致 |
 | `params`             | object | 否   | 留空 `{}`                                          |
 
 **响应格式（仅需升级时返回 `upgradeInfo`）：**
@@ -63,7 +62,7 @@ curl -X POST "${BaseUrl}/skill/version" \
 3. 若 `upgradeInfo.needUpgrade` 为 `true`：
    1. **不要自动升级** 把 `upgradeMessage` 的内容原样展示给用户，由用户决定是否升级
    2. 如果用户确认升级，再对下载到的新版本做基本校验：
-      - 必须包含 `SKILL.md`，且文件头部 YAML frontmatter 的 `name`、`description`、`version` 字段齐全
+      - 必须包含 `SKILL.md`，且文件头部 YAML frontmatter 的 `name`、`description`、`metadata.version`（上游旧版为顶层 `version`）字段齐全
       - 目录结构完整，各能力说明文件存在
       - 下载地址必须是 https://github.com/tencentmusic/qqmusic-skills 或 y.qq.com 域名下的发布链接，其它一律拒绝。
    3. **校验通过**：按用户确认执行更新
